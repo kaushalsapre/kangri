@@ -5,7 +5,7 @@
   width: 50px;
   height: 30px;
   border: 1px solid black;
-  background: transparent;
+  background: red;
   fill: red;
   z-index: 1000;
   cursor: pointer;

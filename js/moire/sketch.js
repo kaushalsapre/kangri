@@ -1,31 +1,40 @@
 let img;
 let amplitude = 10;
 let move = 0;
+let weightX;
+let weightY;
+
 async function setup() {
   createCanvas(windowWidth, windowHeight );
   strokeWeight(1);
   stroke(0);
   angleMode(DEGREES);
   img = await loadImage("assets/1.png");
-  frameRate(12);
+  frameRate(10);
+  translate(width/2, height/2);
 }
 
 
 function draw() {
-  background(220);
+  background(164, 231, 245);
   stroke(0);
   strokeWeight(1);
   noFill();
+  weightX = mouseX;
+  weightY = mouseY;
 
   let t = frameCount * 0.025;
-  let strength = map(mouseY, 0, height, 10, 180);
-  let frequency = map(mouseX, 0, width, 0.01, 0.09);
+  // let strength = map(mouseY, 0, height, 10, 180);
+  // let frequency = map(mouseX, 0, width, 0.01, 0.09);
+  let strength = 10 + 360*pow(sin(frameCount), 1);
+  let frequency = 0.001 + 0.009*pow(sin(frameCount), 1);
 
   // Vertical grid lines
-  for (let x = 0; x < width; x += 5) {
+  for (let x = -40; x < width; x += 3) {
+    stroke(0, 150);
     beginShape();
 
-    for (let y = 0; y < height; y += 5) {
+    for (let y = -40; y < height; y += 3) {
       let dx =
         strength * sin(y * frequency + t) +
         strength * 0.5 * sin(y * frequency * 2.7 - t * 2) +
@@ -36,16 +45,20 @@ function draw() {
         strength * sin(y * 0.04 - t);
 
       vertex(x + dx, y + dy);
+      // let d = dist(x + dx, y + dy, mouseX, mouseY);
+      // vertex(mouseX, mouseY);
     }
 
     endShape();
+
+    // line(mouseX, mouseY, x, mouseY);
   }
 
   // Horizontal grid lines
-  for (let y = 0; y < height; y += 5) {
+  for (let y = -40; y < height; y += 3) {
     beginShape();
 
-    for (let x = 0; x < width; x += 5) {
+    for (let x = -40; x < width; x += 3) {
       let dx =
         strength * sin(y * frequency + t) +
         strength * sin(x * 0.035 - t * 2);
