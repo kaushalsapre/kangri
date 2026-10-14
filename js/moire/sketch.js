@@ -56,6 +56,7 @@ function draw() {
 
   // Horizontal grid lines
   for (let y = -40; y < height; y += 3) {
+        stroke(0, 150);
     beginShape();
 
     for (let x = -40; x < width; x += 3) {
