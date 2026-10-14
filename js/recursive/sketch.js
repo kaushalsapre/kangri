@@ -4,16 +4,15 @@ let LRThreshold = 0;
 function setup() {
   createCanvas(800, 800);
   // noLoop();
-  frameRate(10);
+  frameRate(1);
 }
 
 function draw() {
   background(220);
-
   // divide the canvas in two equal rect. 
   // divide any one random rectangle of the two rects into two rects. 
   // repeat till 5 levels. 
-rectangle(0, 0, width, height, 0);
+rectangle(0, 0, width, height, 20);
 }
 
 
@@ -26,13 +25,13 @@ function rectangle(x, y, w, h, level){
   let direction = random();
   verticalThreshold = mouseY/height;
   LRThreshold = mouseX/width;
-  let r = level;
-  console.log(r)
-  let g = int(255*sin(frameCount));
-  let b = int(255*cos(frameCount));
-  let c = color(r, g, b, 10);
+  // let r = int(255*sin(frameCount));
+  // let g = int(255*sin(frameCount));
+  // let b = int(255*sin(frameCount));
+  // let c = color(r, g, b, 100);
+  let c = 255 -level*30;
   strokeWeight(0.5);
-  fill(c);
+  fill(c, 100);
   rect(x, y, w, h);
   // print(verticalThreshold, LRThreshold, mouseX/height, mouseY);
   if (level == 255){
